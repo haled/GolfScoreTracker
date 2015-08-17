@@ -1,0 +1,26 @@
+<div class="jumbotron">
+  <h1>My Golf Scores</h1>
+</div>
+
+<div class="">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+	<th>Course</th>
+	<th>Scores</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="score in scores" >
+      <tr>
+	<td>{{score.Name}}</td>
+	<td>{{score.CourseName}}</td>
+	<td><a href="#">Scores</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br>
+<div>
+  Message: <font style={color: red}>{{errorMessage}}</font>
+</div>
