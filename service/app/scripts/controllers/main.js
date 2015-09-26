@@ -12,7 +12,7 @@ angular.module('wwwrootApp')
       
     $scope.errorMessage = 'Nothing Yet';
   
-    $http.get('http://localhost:5001/api/scores')
+    $http.get('http://localhost:5011/api/scores')
       .success(function (data) {
     	  $scope.scores = data;
     	  $scope.errorMessage = 'Success';
