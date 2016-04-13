@@ -2,8 +2,8 @@
   <h1>My Golf Scores</h1>
 </div>
 
-<div class="">
-  <table>
+<div class="table-responsive">
+  <table class="table">
     <thead>
       <tr>
         <th>Name</th>
@@ -15,11 +15,15 @@
       <tr>
 	<td>{{score.Name}}</td>
 	<td>{{score.CourseName}}</td>
-	<td><a href="#">Scores</a></td>
+	<td><a href="#/score/{{score.Id}}">Scores</a></td>
       </tr>
     </tbody>
   </table>
 </div>
+<br>
+<p>
+  <a href="score/new">New</a>
+</p>
 <br>
 <div>
   Message: <font style={color: red}>{{errorMessage}}</font>

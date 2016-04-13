@@ -23,6 +23,14 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/score/:scoreId', {
+        templateUrl: 'views/score.html',
+        controller: 'ScoreCtrl'
+      })
+//      .when('/score/new', {
+//        templateUrl: 'views/new.html',
+//        controller:  'NewScoreCtrl'
+//      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
