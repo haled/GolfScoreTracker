@@ -27,10 +27,10 @@ angular
         templateUrl: 'views/score.html',
         controller: 'ScoreCtrl'
       })
-//      .when('/score/new', {
-//        templateUrl: 'views/new.html',
-//        controller:  'NewScoreCtrl'
-//      })
+     .when('/newscore', {
+        templateUrl: 'views/new.html',
+        controller:  'NewScoreCtrl'
+      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'

@@ -7,8 +7,9 @@
  * # MainCtrl
  * Controller of the wwwrootApp
  */
-angular.module('wwwrootApp')
-  .controller('MainCtrl', function ($scope, $http) {
+var gstModule = angular.module('wwwrootApp');
+
+gstModule.controller('MainCtrl', function ($scope, $http) {
       
     $scope.errorMessage = 'Nothing Yet';
   
@@ -20,8 +21,9 @@ angular.module('wwwrootApp')
       .error(function () {
     	  $scope.errorMessage = 'Failure';
       });
-  })
-    .controller('ScoreCtrl', function ($scope, $routeParams, $http) {
+});
+
+gstModule.controller('ScoreCtrl', function ($scope, $routeParams, $http) {
     $scope.errorMessage = 'Score - Nothing Yet';
 
     $http.get('http://localhost:5001/api/scores/' + $routeParams.scoreId)
@@ -32,8 +34,20 @@ angular.module('wwwrootApp')
       })
       .error(function () {
     	  $scope.errorMessage = 'Score - Failure';
-      })
-//	    .controller('NewScoreCtrl', function($scope, $http) {
-//		$scope.errorMessage = 'NewScore - Controller';
-//	    });
-  });
+      });
+});
+
+gstModule.controller('NewScoreCtrl', function($scope, $http, $location) {
+    $scope.errorMessage = 'NewScore - Controller';
+
+    $scope.createCourse = function (score) {
+	$http.post('http://localhost:5001/api/scores/', $scope.score)
+	    .success(function (data) {
+		$scope.errorMessage = 'NewScore - Success';
+		$location.path('/');
+	    })
+	    .error(function () {
+		$scope.errorMessage = 'NewScore - Fail';
+	    });
+    }
+});
