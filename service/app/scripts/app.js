@@ -24,8 +24,8 @@ angular
         controller: 'MainCtrl'
       })
       .when('/score/:scoreId', {
-        templateUrl: 'views/score.html',
-        controller: 'ScoreCtrl'
+        templateUrl: 'views/view.html',
+        controller: 'ViewScoreCtrl'
       })
      .when('/newscore', {
         templateUrl: 'views/new.html',

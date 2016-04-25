@@ -23,31 +23,72 @@ gstModule.controller('MainCtrl', function ($scope, $http) {
       });
 });
 
-gstModule.controller('ScoreCtrl', function ($scope, $routeParams, $http) {
-    $scope.errorMessage = 'Score - Nothing Yet';
+gstModule.controller('ViewScoreCtrl', function ($scope, $routeParams, $http) {
+    $scope.errorMessage = 'View Score - Nothing Yet';
 
     $http.get('http://localhost:5001/api/scores/' + $routeParams.scoreId)
       .success(function (data) {
-
     	  $scope.score = data;
-    	  $scope.errorMessage = 'Score - Success';
+    	  $scope.errorMessage = 'View Score - Success';
       })
       .error(function () {
-    	  $scope.errorMessage = 'Score - Failure';
+    	  $scope.errorMessage = 'View Score - Failure';
       });
 });
 
+// gstModule.controller('ScoreCtrl', function ($scope, $routeParams, $http) {
+//     $scope.errorMessage = 'Score - Nothing Yet';
+
+//     $http.get('http://localhost:5001/api/scores/' + $routeParams.scoreId)
+//       .success(function (data) {
+//           $scope.view = "Edit";
+//     	  $scope.score = data;
+//     	  $scope.errorMessage = 'Score - Success';
+//       })
+//       .error(function () {
+//     	  $scope.errorMessage = 'Score - Failure';
+//       });
+// });
+
 gstModule.controller('NewScoreCtrl', function($scope, $http, $location) {
     $scope.errorMessage = 'NewScore - Controller';
-
-    $scope.createCourse = function (score) {
+    $scope.view = "New";
+    
+    $scope.createCourse = function (score, holeCount) {
+	holeCount = $scope.holeCount;
 	$http.post('http://localhost:5001/api/scores/', $scope.score)
-	    .success(function (data) {
+	    .success(function (scoreid) {
+		$scope.score.Id = scoreid;
+		$scope.view = "Edit";
+		$http.get('http://localhost:5001/api/scores/' + scoreid + '/holes')
+		    .success(function (holes) {
+			if(holes == "") {
+			    $scope.score.HoleScores = EmptyHoles(holeCount);
+			}
+			else {
+			    $scope.score.HoleScores = holes;
+			}
+		    })
+		    .error(function () {
+			$scope.score.HoleScores = EmptyHoles(holeCount);
+		    })
 		$scope.errorMessage = 'NewScore - Success';
-		$location.path('/');
+//		$location.path('/');
 	    })
 	    .error(function () {
 		$scope.errorMessage = 'NewScore - Fail';
 	    });
     }
+
+    $scope.saveRound = function (score) {
+	$http.put('http://localhost:5001/api/scores/' + $scope.score.Id, $scope.score)
+	    .success(function (data) {
+        	$location.path('/');
+            })
+	    .error(function() {
+	        $scope.errorMessage = 'Failed to save round';
+	    });
+    }
 });
+
+

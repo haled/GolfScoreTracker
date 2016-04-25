@@ -1,5 +1,38 @@
-<form class="form-inline">
-  <label for="Name">Name:</label> <input id="Name" type="text" placeholder="Name" ng-model="score.Name" class="form-control"/><br>
-  <label for="CourseName">Name:</label> <input id="CourseName" type="text" placeholder="Course Name" ng-model="score.CourseName" class="form-control"/><br>
-  <input type="submit" class="btn btn-success" value="Create" ng-click="createCourse()">
-</form>
+<div ng-show="view == 'New'">
+  <form class="form-inline">
+    <label for="Name">Name:</label> <input id="Name" type="text" placeholder="Name" ng-model="score.Name" class="form-control"/><br>
+    <label for="CourseName">Course Name:</label> <input id="CourseName" type="text" placeholder="Course Name" ng-model="score.CourseName" class="form-control"/><br>
+    <label for="holeCount">Hole Count:</label><input id="holeCount" type="text" ng-model="holeCount" class="form-control"/>
+    <input type="submit" class="btn btn-success" value="Create" ng-click="createCourse()">
+  </form>
+</div>
+
+<div ng-show="view == 'Edit'">
+  <form class="form-inline">
+      <input type="hidden" id="score.Id" value="{{score.Id}}"/>
+      <label for="Name">Name:</label> <input id="Name" type="text" placeholder="Name" ng-model="score.Name" class="form-control"/><br>
+      <label for="CourseName">Course Name:</label> <input id="CourseName" type="text" placeholder="Course Name" ng-model="score.CourseName" class="form-control"/><br>
+
+      <table class="table-responsive">
+	<thead>
+	  <tr >
+	    <th ng-repeat="hole in score.HoleScores" class="text-center">
+	      {{hole.HoleNumber}}
+	    </th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr>
+	    <td ng-repeat="hole in score.HoleScores" class="text-center">
+	      <input type="text" ng-model="hole.Score" id="hole.Id" value="{{hole.Score}}" size="2" class="text-center"/>
+	    </td>
+	  </tr>
+	</tbody>
+      </table>
+      <input type="submit" class="btn btn-success" value="Save" ng-click="saveRound()">
+  </form>
+</div>
+
+<div>
+  <a href="#/index.html">Main</a>&nbsp;<span>{{errorMessage}}</span>
+</div>
