@@ -1,0 +1,29 @@
+<div>
+  <form class="form-inline">
+      <input type="hidden" id="score.Id" value="{{score.Id}}"/>
+      <label for="Name">Name:</label> <label id="Name">{{score.Name}}</label><br>
+      <label for="CourseName">Course Name:</label> <label id="CourseName">{{score.CourseName}}</label><br>
+
+      <table class="table-responsive">
+	<thead>
+	  <tr >
+	    <th ng-repeat="hole in score.HoleScores" class="text-center">
+	      {{hole.HoleNumber}}
+	    </th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr>
+	    <td ng-repeat="hole in score.HoleScores" class="text-center">
+	      {{hole.Score}}
+	    </td>
+	  </tr>
+	</tbody>
+      </table>
+  </form>
+</div>
+
+<div>
+  <a href="#/index.html">Main</a>&nbsp;<span>{{errorMessage}}</span>
+</div>
+
