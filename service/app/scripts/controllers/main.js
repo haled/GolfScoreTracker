@@ -36,19 +36,28 @@ gstModule.controller('ViewScoreCtrl', function ($scope, $routeParams, $http) {
       });
 });
 
-// gstModule.controller('ScoreCtrl', function ($scope, $routeParams, $http) {
-//     $scope.errorMessage = 'Score - Nothing Yet';
+gstModule.controller('EditScoreCtrl', function ($scope, $routeParams, $http, $location) {
+    $scope.errorMessage = 'Edit Score - Nothing Yet';
 
-//     $http.get('http://localhost:5001/api/scores/' + $routeParams.scoreId)
-//       .success(function (data) {
-//           $scope.view = "Edit";
-//     	  $scope.score = data;
-//     	  $scope.errorMessage = 'Score - Success';
-//       })
-//       .error(function () {
-//     	  $scope.errorMessage = 'Score - Failure';
-//       });
-// });
+    $http.get('http://localhost:5001/api/scores/' + $routeParams.scoreId)
+      .success(function (data) {
+    	  $scope.score = data;
+    	  $scope.errorMessage = 'Edit Score - Success';
+      })
+      .error(function () {
+    	  $scope.errorMessage = 'Edit Score - Failure';
+      });
+
+    $scope.saveEdits = function (score) {
+	$http.put('http://localhost:5001/api/scores/' + $scope.score.Id, $scope.score)
+	    .success(function (data) {
+        	$location.path('/');
+            })
+	    .error(function() {
+	        $scope.errorMessage = 'Edit Score - Failed to save round';
+	    });      
+    }
+});
 
 gstModule.controller('NewScoreCtrl', function($scope, $http, $location) {
     $scope.errorMessage = 'NewScore - Controller';
@@ -73,7 +82,6 @@ gstModule.controller('NewScoreCtrl', function($scope, $http, $location) {
 			$scope.score.HoleScores = EmptyHoles(holeCount);
 		    })
 		$scope.errorMessage = 'NewScore - Success';
-//		$location.path('/');
 	    })
 	    .error(function () {
 		$scope.errorMessage = 'NewScore - Fail';

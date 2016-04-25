@@ -27,6 +27,10 @@ angular
         templateUrl: 'views/view.html',
         controller: 'ViewScoreCtrl'
       })
+     .when('/editscore/:scoreId', {
+         templateUrl: 'views/edit.html',
+	 controller: 'EditScoreCtrl'
+     })
      .when('/newscore', {
         templateUrl: 'views/new.html',
         controller:  'NewScoreCtrl'
