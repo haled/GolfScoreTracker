@@ -25,5 +25,9 @@
 </div>
 
 <div>
-  <a href="#/index.html">Main</a>&nbsp;<span>{{errorMessage}}</span>
+  <a href="#/index.html">Main</a>
+</div>
+<br/>
+<div ng-show="errorMessage != ''" class="alert alert-danger">
+  <span>{{errorMessage}}</span>
 </div>

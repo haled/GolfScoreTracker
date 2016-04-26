@@ -21,7 +21,8 @@
 <p>
   <a href="#/newscore">New</a>
 </p>
-<br>
-<div>
-  Message: <font style={color: red}>{{errorMessage}}</font>
+
+<br/>
+<div ng-show="errorMessage != ''" class="alert alert-danger">
+  <span>{{errorMessage}}</span>
 </div>

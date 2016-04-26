@@ -4,18 +4,18 @@
       <label for="Name">Name:</label> <label id="Name">{{score.Name}}</label><br>
       <label for="CourseName">Course Name:</label> <label id="CourseName">{{score.CourseName}}</label><br>
 
-      <table class="table-responsive">
+      <table class="table-responsive table-bordered">
 	<thead>
 	  <tr >
 	    <th ng-repeat="hole in score.HoleScores" class="text-center">
-	      {{hole.HoleNumber}}
+	      &nbsp;{{hole.HoleNumber}}&nbsp;
 	    </th>
 	  </tr>
 	</thead>
 	<tbody>
 	  <tr>
 	    <td ng-repeat="hole in score.HoleScores" class="text-center">
-	      {{hole.Score}}
+	      &nbsp;{{hole.Score}}&nbsp;
 	    </td>
 	  </tr>
 	</tbody>
@@ -24,6 +24,10 @@
 </div>
 
 <div>
-  <a href="#/index.html">Main</a>&nbsp;<span>{{errorMessage}}</span>
+  <a href="#/index.html">Main</a>
+</div>
+<br/>
+<div ng-show="errorMessage != ''" class="alert alert-danger">
+  <span>{{errorMessage}}</span>
 </div>
 
