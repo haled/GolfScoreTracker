@@ -19,14 +19,21 @@ function GetAllScores() {
     var scores = [];
     for(var i = 0; i < storage.length; i++) {
 	var currentScore = JSON.parse(storage.getItem(storage.key(i)));
-	alert(currentScore.CourseName);
 	scores.push(currentScore);
     }
     return scores;
 }
 
-function SaveItem(score) {
+function SaveNewItem(score) {
     var id = storage.length + 2;
     score.Id = id;
     storage.setItem(id, JSON.stringify(score));
+}
+
+function SaveItem(score) {
+    storage.setItem(score.Id, JSON.stringify(score));
+}
+
+function GetScore(id) {
+    return JSON.parse(storage.getItem(id));
 }
