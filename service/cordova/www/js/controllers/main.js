@@ -7,13 +7,22 @@
  * # MainCtrl
  * Controller of the wwwrootApp
  */
+
+/*
+var storage = window.localStorage;
+var value = storage.getItem(key); // Pass a key name to get its value.
+storage.setItem(key, value) // Pass a key name and its value to add or update that key.
+storage.removeItem(key) // Pass a key name to remove that key from storage.
+ */
+
 var gstModule = angular.module('wwwrootApp');
 
 gstModule.controller('MainCtrl', function ($scope, $http) {
       
     $scope.errorMessage = 'Nothing Yet';
-  
-    $http.get('http://localhost:5001/api/scores')
+
+    $scope.scores = GetAllScores();
+    /*$http.get('http://localhost:5001/api/scores')
       .success(function (data) {
     	  $scope.scores = data;
     	  $scope.errorMessage = 'Success';
@@ -21,6 +30,7 @@ gstModule.controller('MainCtrl', function ($scope, $http) {
       .error(function () {
     	  $scope.errorMessage = 'Failure';
       });
+    */
 });
 
 gstModule.controller('ViewScoreCtrl', function ($scope, $routeParams, $http) {
@@ -65,7 +75,10 @@ gstModule.controller('NewScoreCtrl', function($scope, $http, $location) {
     
     $scope.createCourse = function (score, holeCount) {
 	holeCount = $scope.holeCount;
-	$http.post('http://localhost:5001/api/scores/', $scope.score)
+	$scope.score.HoleScores = EmptyHoles(holeCount);
+	SaveItem($scope.score);
+	$scope.view = "Edit";
+	/*$http.post('http://localhost:5001/api/scores/', $scope.score)
 	    .success(function (scoreid) {
 		$scope.score.Id = scoreid;
 		$scope.view = "Edit";
@@ -86,8 +99,9 @@ gstModule.controller('NewScoreCtrl', function($scope, $http, $location) {
 	    .error(function () {
 		$scope.errorMessage = 'NewScore - Fail';
 	    });
+        */
     }
-
+    
     $scope.saveRound = function (score) {
 	$http.put('http://localhost:5001/api/scores/' + $scope.score.Id, $scope.score)
 	    .success(function (data) {
