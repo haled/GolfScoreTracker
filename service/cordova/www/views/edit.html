@@ -1,5 +1,6 @@
 <div>
   <form class="form-inline">
+    <div class="form-group-sm">
       <input type="hidden" id="score.Id" value="{{score.Id}}"/>
       <label for="Name">Name:</label> <input id="Name" type="text" placeholder="Name" ng-model="score.Name" class="form-control"/><br>
       <label for="CourseName">Course Name:</label> <input id="CourseName" type="text" placeholder="Course Name" ng-model="score.CourseName" class="form-control"/><br>
@@ -21,6 +22,7 @@
 	</tbody>
       </table>
       <input type="submit" class="btn btn-success" value="Save" ng-click="saveEdits()">
+    </div>
   </form>
 </div>
 
