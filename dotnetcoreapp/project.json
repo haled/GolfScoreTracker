@@ -1,0 +1,30 @@
+{
+    "webroot": "web",
+    "version": "1.0.0-*",
+
+    "dependencies": {
+        "Microsoft.AspNet.Mvc": "6.0.0-rc1-*",
+        "Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-*",
+        "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-*",
+        "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-*"
+    },
+
+    "commands": {
+        "web": "Microsoft.AspNet.Server.Kestrel --server.urls http://*:5001"
+    },
+
+    "frameworks": {
+        "dnx451": {},
+        "dnxcore50": {}
+    },
+
+    "exclude": [
+    "bower_components"
+  ],
+    "publishExclude": [
+    "bower_components",
+    "**.xproj",
+    "**.user",
+    "**.vspscc"
+  ]
+}
